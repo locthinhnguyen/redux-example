@@ -15,7 +15,7 @@ const ListProduct = () => {
         {product?.map((item) => (
           <div
             key={item.id}
-            className="border rounded-lg"
+            className="border rounded-lg p-5"
             onClick={() => handleClick(item.id)}
           >
             <h2>{item.name}</h2>

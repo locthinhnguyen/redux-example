@@ -23,21 +23,31 @@ const initialState = {
       price: '$299',
     },
   ],
+  productDetail: [],
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type === 'UPDATE_CART') {
-    return {
-      ...state,
-      cart: action.payload,
-    };
+  switch (action.type) {
+    case 'UPDATE_CART':
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case 'ADD':
+      return {
+        ...state,
+        productDetail: [...state.productDetail, action.payload],
+      };
+    default:
+      return state;
   }
-  return state;
 };
 
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['cart', 'productDetail'],
+  // blacklist: ['initialState'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
